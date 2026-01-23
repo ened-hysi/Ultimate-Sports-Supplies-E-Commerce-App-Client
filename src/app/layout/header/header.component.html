@@ -7,7 +7,7 @@
          [routerLinkActiveOptions]="{exact: true}"
          >Home</a>
         <a routerLink="/shop" routerLinkActive="active">Shop</a>
-        <a>Contact</a>
+        <a routerLink="/test-error" routerLinkActive="active">Errors</a>
      </nav>
      <div>
         <a matBadge="5" matBadgeSize="large" class="custom-badge">
@@ -18,3 +18,7 @@
      </div>
   </div>
 </header>
+
+@if (busyService.loading) {
+   <mat-progress-bar mode="indeterminate" class="fixed top-20 z-50"></mat-progress-bar>
+}
