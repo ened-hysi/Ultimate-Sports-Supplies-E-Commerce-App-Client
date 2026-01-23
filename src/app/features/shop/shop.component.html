@@ -1,7 +1,9 @@
 @if (products) {
-  <div>
-   <div>
+  <div class="d-flex flex-column gap-3">
+   <div class="d-flex justify-content-between align-items-center flex-wrap">
+
       <mat-paginator
+      class="bg-white"
          (page)="handlePageEvent($event)"
          [length]="products.totalEntities"
          [pageSize]="shopPaginationParams.entitiesPerPage"
@@ -16,24 +18,28 @@
       <form 
           #searchForm="ngForm"
           (ngSubmit)="onSearchChange()"
+          class="position-relative d-flex align-items-center w-100 mx-4"
           >
-           <input type="search" 
+           <input 
+              type="search" 
+              class="form-control block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg"
               placeholder="Search"
               name="search"
               [(ngModel)]="shopPaginationParams.search"
             />
            <button mat-icon-button type="submit"
+                class="btn position-absolute inset-y-0 right-8 top-0 end-0 mt-2 me-3 d-flex align-items-center"
            >
               <mat-icon>search</mat-icon>
            </button>
         </form>
 
-      <div>
-        <button mat-stroked-button (click)="openFiltersDialog()">
+      <div class="d-flex gap-3 mt-2">
+        <button class="match-input-height" mat-stroked-button (click)="openFiltersDialog()">
          <mat-icon>filter_list</mat-icon>
          Filters
       </button>
-      <button mat-stroked-button [mat-menu-trigger-for]="sortMenu">
+      <button class="match-input-height" mat-stroked-button [mat-menu-trigger-for]="sortMenu">
          <mat-icon>swap_vert</mat-icon>
          Sort
       </button>
@@ -41,7 +47,7 @@
       
    </div>
 
-   <div>
+   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-4">
     @for (product of products.data; track product.id) {
         <app-product-item [product]="product"></app-product-item>
     }

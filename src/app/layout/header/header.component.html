@@ -1,3 +1,25 @@
+<header class="border-bottom shadow p-3 w-100 fixed-top bg-white">
+  
+   <div class="d-flex align-items-center justify-content-between container-xxl mx-auto">
+      
+      <img routerLink="/" src="/images/logo.png" alt="app logo" class="img-fluid" style="max-height: 4rem;">
+      
+      <div class="d-flex align-items-center gap-5">
+         <nav class="d-flex gap-3 my-2 text-uppercase fs-4">
+            <a routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}"
+            >Home</a>
+
+            <a routerLink="/shop" routerLinkActive="active">Shop</a>
+            <a routerLink="/test-error" routerLinkActive="active">Errors</a>
+         </nav>
+      </div>
+      
+
+     <div class="d-flex gap-3 align-items-center">
+        <a matBadge="5" matBadgeSize="large" class="custom-badge mt-2 me-2">
+            <mat-icon>shopping_cart</mat-icon>
 <header>
   <div>
       <img routerLink="/" src="/images/logo.png" alt="app logo">
@@ -23,5 +45,5 @@
 </header>
 
 @if (busyService.loading) {
-   <mat-progress-bar mode="indeterminate" class="fixed top-20 z-50"></mat-progress-bar>
+   <mat-progress-bar mode="indeterminate" class="position-fixed mt-5 z-3 w-100"></mat-progress-bar>
 }
