@@ -12,7 +12,20 @@ export class CartService {
   baseUrl = environment.apiUrl;
   private http = inject(HttpClient);
   cart = signal<Cart | null>(null);
+
   itemCount = computed(() => {
+    /*
+      if (this.cart()) {
+        if (this.cart()!.items) {
+          return this.cart()!.items.reduce((sum, item) => sum + item.quantity, 0)
+        } else {
+          console.log("NO CART ITEMS!");
+        } 
+      } else {
+        console.log("NO CART!");
+      }
+    */
+    
     return this.cart()?.items.reduce((sum, item) => sum + item.quantity, 0)
   })
 
@@ -33,7 +46,7 @@ export class CartService {
   getCart(id: string) {
     return this.http.get<Cart>(this.baseUrl + 'cart?id=' + id).pipe(
       map(cart => {
-        console.log(cart);
+        console.log(cart.items);
         this.cart.set(cart);
         return cart;
       })
