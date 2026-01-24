@@ -1,20 +1,25 @@
-<div class="w-full">
+<div class="w-100">
    <mat-radio-group 
       [value]="cartService.selectedDelivery()?.id" 
       (change)="updateDeliveryMethod($event.value)"
-       class="grid grid-cols-2 gap-4">
+       class="row g-3"
+   >
+
      @for (method of checkoutService.deliveryMethods; track method.id) {
-         <label class="p-3 border border-gray-200 cursor-pointer w-full h-full hover:bg-purple-100">
-          <mat-radio-button 
-             class="w-full h-full" 
-             [checked]="cartService.selectedDelivery() === method"
-             [value]="method">
-             <div class="flex flex-col w-full h-full">
-                <strong>{{method.shortName}} - {{method.fee | currency}}</strong>
-                <span class="text-sm">{{method.description}}</span>
-             </div>
-         </mat-radio-button>
-         </label>
+         <div class="col-md-6">
+            <label class="p-3 border border-secondary rounded w-100 h-100 d-block bg-white hover-shadow">
+               <mat-radio-button 
+                  class="w-100 h-100" 
+                  [checked]="cartService.selectedDelivery() === method"
+                  [value]="method">
+                  <div class="d-flex flex-column w-100 h-100">
+                     <strong>{{method.shortName}} - {{method.fee | currency}}</strong>
+                     <span class="text-muted small">{{method.description}}</span>
+                  </div>
+               </mat-radio-button>
+            </label>
+         </div>
+         
      }
    </mat-radio-group>
 
