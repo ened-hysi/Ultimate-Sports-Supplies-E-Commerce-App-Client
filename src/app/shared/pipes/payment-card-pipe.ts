@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { PaymentSummary } from '../../../../shared/models/order';
+import { PaymentSummary } from '../models/order';
 import { ConfirmationToken } from '@stripe/stripe-js';
 
 @Pipe({

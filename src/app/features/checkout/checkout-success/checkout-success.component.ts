@@ -5,8 +5,8 @@ import { SignalrService } from '../../../core/services/signalr.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { OrderService } from '../../../core/services/order.service';
-import { AddressPipe } from '../../../src/app/shared/pipes/address-pipe';
-import { PaymentCardPipe } from '../../../src/app/shared/pipes/payment-card-pipe';
+import { AddressPipe } from '../../../shared/pipes/address-pipe';
+import { PaymentCardPipe } from '../../../shared/pipes/payment-card-pipe';
 
 @Component({
   selector: 'app-checkout-success',

@@ -5,9 +5,8 @@ import { Order } from '../../../shared/models/order';
 import { MatCardModule } from '@angular/material/card';
 import { MatButton } from '@angular/material/button';
 import { CurrencyPipe, DatePipe } from '@angular/common';
-import { AddressPipe } from '../../../src/app/shared/pipes/address-pipe';
-import { PaymentCardPipe } from '../../../src/app/shared/pipes/payment-card-pipe';
-
+import { AddressPipe } from '../../../shared/pipes/address-pipe';
+import { PaymentCardPipe } from '../../../shared/pipes/payment-card-pipe';
 
 @Component({
   selector: 'app-order-detailed',

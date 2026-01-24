@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ShippingAddress } from '../../../../shared/models/order';
+import { ShippingAddress } from '../models/order';
 import { ConfirmationToken } from '@stripe/stripe-js';
 
 @Pipe({
