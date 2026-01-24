@@ -70,4 +70,14 @@ button.match-input-height {
     container-color: green,
     supporting-text-color: white
   ));
+
+.dark-red-button {
+  background-color: #8B0000 !important; /* Dark red */
+  color: black !important;
+}
+
+.dark-red-button:hover {
+  background-color: #a10000 !important; /* Slightly lighter red on hover */
+}
+
 }

@@ -18,28 +18,28 @@
       <form 
           #searchForm="ngForm"
           (ngSubmit)="onSearchChange()"
-          class="position-relative d-flex align-items-center w-100 mx-4"
+          class="position-relative d-flex align-items-center w-100 mx-4 mt-3 mt-md-0"
           >
            <input 
               type="search" 
-              class="form-control block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg"
+              class="form-control p-3 rounded"
               placeholder="Search"
               name="search"
               [(ngModel)]="shopPaginationParams.search"
             />
            <button mat-icon-button type="submit"
-                class="btn position-absolute inset-y-0 right-8 top-0 end-0 mt-2 me-3 d-flex align-items-center"
+                class="btn btn-dark position-absolute top-0 end-0 mt-2 me-3 d-flex align-items-center"
            >
               <mat-icon>search</mat-icon>
            </button>
         </form>
 
-      <div class="d-flex gap-3 mt-2">
-        <button class="match-input-height" mat-stroked-button (click)="openFiltersDialog()">
+      <div class="d-flex gap-3 mt-3 mt-md-0">
+        <button class="btn btn-outline-dark match-input-height dark-red-button" mat-stroked-button (click)="openFiltersDialog()">
          <mat-icon>filter_list</mat-icon>
          Filters
       </button>
-      <button class="match-input-height" mat-stroked-button [mat-menu-trigger-for]="sortMenu">
+      <button class="btn btn-outline-dark match-input-height dark-red-button" mat-stroked-button [mat-menu-trigger-for]="sortMenu">
          <mat-icon>swap_vert</mat-icon>
          Sort
       </button>
@@ -47,7 +47,7 @@
       
    </div>
 
-   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-4">
+   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-4 mt-3">
     @for (product of products.data; track product.id) {
         <app-product-item [product]="product"></app-product-item>
     }

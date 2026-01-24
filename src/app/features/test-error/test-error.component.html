@@ -1,16 +1,16 @@
-<div>
-    <button mat-stroked-button (click)="get500Error()">Test 500 error</button>
-    <button mat-stroked-button (click)="get404Error()">Test 404 error</button>
-    <button mat-stroked-button (click)="get400Error()">Test 400 error</button>
-    <button mat-stroked-button (click)="get401Error()">Test 401 error</button>
-    <button mat-stroked-button (click)="get400ValidationError()">Test validation error</button>
+<div class="mt-3 d-flex justify-content-center gap-3 flex-wrap">
+    <button mat-stroked-button class="btn btn-outline-secondary" (click)="get500Error()">Test 500 error</button>
+    <button mat-stroked-button class="btn btn-outline-secondary" (click)="get404Error()">Test 404 error</button>
+    <button mat-stroked-button class="btn btn-outline-secondary" (click)="get400Error()">Test 400 error</button>
+    <button mat-stroked-button class="btn btn-outline-secondary" (click)="get401Error()">Test 401 error</button>
+    <button mat-stroked-button class="btn btn-outline-secondary" (click)="get400ValidationError()">Test validation error</button>
 </div>
 
 @if (validationErrors) {
-  <div>
-    <ul>
+  <div class="mx-auto mt-3 bg-danger-subtle p-3 rounded w-100" style="max-width: 40rem;">
+    <ul class="list-unstyled mb-0">
         @for (error of validationErrors; track $index) {
-            <li>{{error}}</li>
+            <li class="text-danger fw-semibold">{{error}}</li>
         }
     </ul>
 
