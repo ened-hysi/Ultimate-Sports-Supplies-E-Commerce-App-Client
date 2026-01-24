@@ -1,13 +1,13 @@
 <section>
    @if (cartService.cart()?.items?.length! > 0) {
      
-       <div class="flex w-full items-start gap-6 mt-32">
-          <div class="w-3/4">
+       <div class="d-flex w-100 align-items-start gap-4 mt-5">
+          <div class="col-9">
              @for (item of cartService.cart()?.items; track item.productId) {
                 <app-cart-item [item]="item"></app-cart-item>
              }
           </div>
-           <div class="w-1/4">
+           <div class="col-3">
               <app-order-summary></app-order-summary>
            </div>
        </div>
