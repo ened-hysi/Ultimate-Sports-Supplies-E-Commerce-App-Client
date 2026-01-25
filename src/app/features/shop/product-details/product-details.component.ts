@@ -38,6 +38,7 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
       this.loadProduct();
+     
   }
 
   loadProduct() {
@@ -47,6 +48,7 @@ export class ProductDetailsComponent implements OnInit {
       next: product => {
         this.product = product
         this.updateQuantityInCart();
+        
       },
       error: error => console.log(error)
     })
