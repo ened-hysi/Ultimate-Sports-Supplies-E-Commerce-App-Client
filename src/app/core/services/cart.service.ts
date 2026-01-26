@@ -9,6 +9,7 @@ import { DeliveryMethod } from '../../shared/models/deliveryMethod';
 @Injectable({
   providedIn: 'root'
 })
+
 export class CartService {
   baseUrl = environment.apiUrl;
   private http = inject(HttpClient);
@@ -26,16 +27,30 @@ export class CartService {
         console.log("NO CART!");
       }
     */
+
+    console.log('itemCount Signal: this.cart() : '+JSON.stringify(this.cart(), null, 2));
+    console.log('itemCount Signal: this.cart().items : '+JSON.stringify(this.cart()?.items, null, 2));
     
     return this.cart()?.items.reduce((sum, item) => sum + item.quantity, 0)
-  })
+  });
+
   selectedDelivery = signal<DeliveryMethod | null>(null);
+  
   totals = computed(() => {
     const cart = this.cart();
+    console.log('totals Signal: cart : '+JSON.stringify(cart, null, 2));
+
     const delivery = this.selectedDelivery();
+    console.log('totals Signal: delivery : '+JSON.stringify(delivery, null, 2));
+
     if (!cart) return null;
+
     const subtotal = cart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    console.log('totals Signal: subtotal : '+JSON.stringify(subtotal, null, 2));
+
     const shipping = delivery ? delivery.fee : 0;
+    console.log('totals Signal: shipping : '+JSON.stringify(shipping, null, 2));
+
     const discount = 0;
     return {
       subtotal,
@@ -49,6 +64,11 @@ export class CartService {
     return this.http.get<Cart>(this.baseUrl + 'cart?id=' + id).pipe(
       map(cart => {
         this.cart.set(cart);
+
+        console.log('getCart(): cart : '+JSON.stringify(cart, null, 2));
+        console.log('getCart(): this.cart : '+JSON.stringify(this.cart(), null, 2));
+        console.log('getCart(): this.cart.items : '+JSON.stringify(this.cart()?.items, null, 2));
+
         return cart;
       })
     )
@@ -56,20 +76,36 @@ export class CartService {
 
   setCart(cart: Cart) {
     return this.http.post<Cart>(this.baseUrl + 'cart', cart).subscribe({
-      next: cart => this.cart.set(cart)
+      next: cart => {
+        console.log('setCart(): cart : '+JSON.stringify(cart, null, 2));
+        this.cart.set(cart);
+        console.log('setCart(): this.cart : '+JSON.stringify(this.cart(), null, 2));
+        console.log('setCart(): this.cart.items : '+JSON.stringify(this.cart()?.items, null, 2));
+      }
     })
   }
 
   addItemToCart(item: CartItem | Product, quantity = 1) {
+    console.log('addItemToCart(): item : '+JSON.stringify(item, null, 2));
+    console.log('addItemToCart(): quantity : '+JSON.stringify(quantity, null, 2));
+
     const cart = this.cart() ?? this.createCart();
+    console.log('addItemToCart(): cart : '+JSON.stringify(cart, null, 2));
+
     if (this.isProduct(item)) {
       item = this.mapProductToCartItem(item);
+      console.log('addItemToCart(): item : '+JSON.stringify(item, null, 2));
     }
+
     cart.items = this.addOrUpdateItem(cart.items, item, quantity);
+    console.log('addItemToCart(): cart.items : '+JSON.stringify(cart.items, null, 2));
+
     this.setCart(cart);
   }
 
+  // No console logs here
   removeItemFromCart(productId: number, quantity = 1) {
+
     const cart = this.cart();
     if (!cart) return;
     const index = cart.items.findIndex(x => x.productId === productId);
@@ -86,6 +122,8 @@ export class CartService {
       }
     }
   }
+
+  // No console logs here
   deleteCart() {
     this.http.delete(this.baseUrl + 'cart?id=' + this.cart()?.id).subscribe({
       next : () => {
@@ -96,16 +134,30 @@ export class CartService {
   }
 
   private addOrUpdateItem(items: CartItem[], item: CartItem, quantity: number): CartItem[] {
+    console.log('addorUpdateItem(): items : '+JSON.stringify(items, null, 2));
+    console.log('addorUpdateItem(): item : '+JSON.stringify(item, null, 2));
+    console.log('addorUpdateItem(): quantity : '+JSON.stringify(quantity, null, 2));
+
     const index = items.findIndex(x => x.productId === item.productId);
+    console.log('addorUpdateItem(): index : '+JSON.stringify(index, null, 2));
+
     if (index === -1) {
       item.quantity = quantity
+      console.log('addorUpdateItem(): item : '+JSON.stringify(item, null, 2));
+
       items.push(item);
+      //console.log('addorUpdateItem(): items : '+JSON.stringify(items, null, 2));
     } else {
       items[index].quantity += quantity
     }
+
+    console.log('addorUpdateItem(): items : '+JSON.stringify(items, null, 2));
     return items;
   }
+
   private mapProductToCartItem(item: Product): CartItem {
+    console.log('mapProductToCartItem(): item : '+JSON.stringify(item, null, 2));
+
     return {
       productId: item.id,
       productName: item.name,
@@ -118,12 +170,16 @@ export class CartService {
   }
 
   private isProduct(item: CartItem | Product): item is Product {
+    console.log('isProduct(): item : '+JSON.stringify(item, null, 2));
+    
     return (item as Product).id !== undefined;
   }
+
   private createCart(): Cart {
     const cart = new Cart();
+    console.log('createCart(): cart : '+JSON.stringify(cart, null, 2));
+
     localStorage.setItem('cart_id', cart.id);
     return cart;
   }
-  
 }
