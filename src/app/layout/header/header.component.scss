@@ -13,6 +13,32 @@
 
 a {
     &.active {
-      color: #7d00fa;
+      color: #8B0000 !important;
+      text-decoration: none !important;
     }
 }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+form input.form-control {
+  height: 40px !important;
+  padding: 0.375rem 0.75rem !important;
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+}
+
+form button[mat-icon-button] {
+  height: 40px !important;
+  width: 40px !important;
+  min-width: 40px !important;
+}
+
+form {
+  align-items: stretch !important;
+}
+
+

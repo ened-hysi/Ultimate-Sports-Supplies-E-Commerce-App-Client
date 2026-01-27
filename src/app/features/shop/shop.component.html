@@ -18,17 +18,20 @@
       <form 
           #searchForm="ngForm"
           (ngSubmit)="onSearchChange()"
-          class="position-relative d-flex align-items-center w-100 mx-4 mt-3 mt-md-0"
+          class="position-relative d-flex"
+          style="flex: 1; max-width: 500px; margin: 0 1rem; height: 57px;"
           >
            <input 
               type="search" 
-              class="form-control p-3 rounded"
+              class="form-control rounded"
               placeholder="Search"
               name="search"
               [(ngModel)]="shopPaginationParams.search"
+              
             />
            <button mat-icon-button type="submit"
-                class="btn btn-dark position-absolute top-0 end-0 mt-2 me-3 d-flex align-items-center"
+                class="position-absolute end-0 me-5 mt-2"
+    
            >
               <mat-icon>search</mat-icon>
            </button>

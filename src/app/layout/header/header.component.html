@@ -1,4 +1,4 @@
-<header class="border-bottom shadow p-3 w-100 sticky-top bg-white mb-5">
+<header class="border-bottom shadow p-3 w-100 bg-white mb-5" style="overflow: visible;">
 
   <div class="d-flex align-items-center justify-content-between container-xxl mx-auto">
 
@@ -9,10 +9,13 @@
             <a routerLink="/"
                routerLinkActive="active"
                [routerLinkActiveOptions]="{exact: true}"
+               style="color: black; text-decoration: none;"
                >Home</a>
 
-            <a routerLink="/shop" routerLinkActive="active">Shop</a>
-            <a routerLink="/test-error" routerLinkActive="active">Errors</a>
+            <a routerLink="/shop" routerLinkActive="active"
+               style="color: black; text-decoration: none;">Shop</a>
+            <a routerLink="/test-error" routerLinkActive="active"
+               style="color: black; text-decoration: none;">Errors</a>
          </nav>
       </div>
 
@@ -42,7 +45,7 @@
    <mat-progress-bar mode="indeterminate" class="position-fixed mt-5 z-3 w-100"></mat-progress-bar>
 }
 
-<mat-menu #menu="matMenu" class="px-5">
+<mat-menu #menu="matMenu" class="px-2">
    <button mat-menu-item class="px-3" routerLink="/cart">
       <mat-icon>shopping_cart</mat-icon>
       My Cart
