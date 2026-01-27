@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { ShopService } from '../../../core/services/shop.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../../shared/models/product';
@@ -11,6 +11,7 @@ import { MatDivider } from "@angular/material/divider";
 import { CartService } from '../../../core/services/cart.service';
 import { FormsModule } from '@angular/forms';
 
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-product-details',
@@ -27,7 +28,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss'
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, AfterViewChecked {
   private shopService = inject(ShopService);
   private activatedRoute = inject(ActivatedRoute);
   private cartService = inject(CartService);
@@ -35,10 +36,18 @@ export class ProductDetailsComponent implements OnInit {
   quantityInCart = 0;
   quantity = 1;
   
+  @ViewChild('carouselRef') carouselRef!: ElementRef;
+  private carouselInitialized = false;
 
   ngOnInit(): void {
       this.loadProduct();
-     
+  }
+
+  ngAfterViewChecked(): void {
+    if (this.product && this.carouselRef && !this.carouselInitialized) {
+      new bootstrap.Carousel(this.carouselRef.nativeElement, { interval: false });
+      this.carouselInitialized = true;
+    }
   }
 
   loadProduct() {
@@ -48,7 +57,7 @@ export class ProductDetailsComponent implements OnInit {
       next: product => {
         this.product = product
         this.updateQuantityInCart();
-        
+        console.log('loadProduct() this.product : '+JSON.stringify(this.product, null, 2));
       },
       error: error => console.log(error)
     })

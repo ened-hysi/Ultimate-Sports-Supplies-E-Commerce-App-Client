@@ -6,9 +6,26 @@
 
             <div class="col-md-6 d-flex justify-content-center">
                 <div class="w-100" style="max-width: 600px;">
-                    @for (picture of product.productPictures; track picture.id) {
-                        <img class="img-fluid" [src]="picture.pictureUrl" alt="product image">
-                    }
+                <!--Start-->
+                    <div #carouselRef id="carouselProductImages" class="carousel slide" data-bs-ride="false">
+                        <div class="carousel-inner">
+                            @for (picture of product.productPictures;  track picture.id; let i = $index) {
+                                <div class="carousel-item" [class.active]="i === 0">
+                                    <img [src]="picture.pictureUrl" class="d-block w-100 img-fluid" alt="Product image">
+                                </div>
+                            }
+                        </div>
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselProductImages" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselProductImages" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                <!--End-->
                 </div>
             </div>
            

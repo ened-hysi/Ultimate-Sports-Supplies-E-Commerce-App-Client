@@ -16,18 +16,6 @@ export class CartService {
   cart = signal<Cart | null>(null);
 
   itemCount = computed(() => {
-    /*
-      if (this.cart()) {
-        if (this.cart()!.items) {
-          return this.cart()!.items.reduce((sum, item) => sum + item.quantity, 0)
-        } else {
-          console.log("NO CART ITEMS!");
-        } 
-      } else {
-        console.log("NO CART!");
-      }
-    */
-
     console.log('itemCount Signal: this.cart() : '+JSON.stringify(this.cart(), null, 2));
     console.log('itemCount Signal: this.cart().items : '+JSON.stringify(this.cart()?.items, null, 2));
     
