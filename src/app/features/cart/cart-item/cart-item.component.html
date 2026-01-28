@@ -5,37 +5,34 @@
         <img src="{{item().pictureUrl}}" alt="product image" class="img-thumbnail" style="width: 120px; height: 120px; object-fit: cover; object-position: center;">
      </a>
 
-     <div class="d-flex align-items-center justify-content-between order-3 flex-grow-1">
-         <div class="d-flex align-items-center gap-2">
-            <button mat-icon-button (click)="decrementQuantity()">
-                <mat-icon class="text-danger">remove</mat-icon>
-            </button>
+       <div class="d-flex flex-column flex-grow-1 order-2">
+         <a routerLink="/shop/{{item().productId}}" class="fw-medium text-decoration-none">
+            {{item().productName}}
+         </a>
 
-            <div class="fw-semibold fs-5 mb-1">{{item().quantity}}</div>
-
-            <button mat-icon-button (click)="incrementQuantity()">
-                <mat-icon class="text-success">add</mat-icon>
+         <div class="d-flex align-items-center gap-2 mt-2">
+            <button mat-button class="text-danger d-flex gap-1 align-items-center" (click)="removeItemFromCart()">
+               <mat-icon>delete</mat-icon>
+               Delete
             </button>
-         </div>
-        
-         <div class="text-end" style="min-width: 120px;">
-            <p class="fw-bold fs-5">{{item().price | currency}}</p>
          </div>
      </div>
 
-      
-      <div class="d-flex flex-column flex-grow-1 order-2">
-          <a routerLink="/shop/{{item().productId}}" class="fw-medium text-decoration-none">
-            {{item().productName}}
-          </a>
+     <div class="d-flex align-items-center justify-content-center gap-2 order-3" style="min-width: 120px;">
+         <button mat-icon-button (click)="decrementQuantity()">
+             <mat-icon class="text-danger">remove</mat-icon>
+         </button>
 
-          <div class="d-flex align-items-center gap-2 mt-2">
-             <button mat-button class="text-danger d-flex gap-1 align-items-center" (click)="removeItemFromCart()">
-                <mat-icon>delete</mat-icon>
-                Delete
-             </button>
-          </div>
-      </div>
+         <div class="fw-semibold fs-5" style="min-width: 40px; text-align: center;">{{item().quantity}}</div>
+
+         <button mat-icon-button (click)="incrementQuantity()">
+             <mat-icon class="text-success">add</mat-icon>
+         </button>
+     </div>
+    
+     <div class="text-end order-4" style="min-width: 100px;">
+        <p class="fw-bold fs-5 mb-0">{{item().price | currency}}</p>
+     </div>
 
    </div>
 </div>
