@@ -33,7 +33,7 @@ export interface PaymentSummary {
 export interface OrderItem {
   productId: number
   productName: string
-  pictureUrl: string
+  picture1Url: string
   price: number
   quantity: number
 }
@@ -41,6 +41,6 @@ export interface OrderItem {
 export interface OrderToCreate {
     cartId: string;
     deliveryMethodId: number;
-    shippingAddress: ShippingAddress;
-    paymentSummary: PaymentSummary;
+    shippingAddressDTO: ShippingAddress;
+    paymentSummaryDTO: PaymentSummary;
 }
