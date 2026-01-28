@@ -17,6 +17,7 @@ export class CheckoutService {
     return this.http.get<DeliveryMethod[]>(this.baseUrl + 'payments/delivery-methods').pipe(
       map(methods => {
         this.deliveryMethods = methods.sort((a,b) => b.fee - a.fee);
+        console.log('getDeliveryMethods(): this.deliveryMethods : '+JSON.stringify(this.deliveryMethods, null, 2));
         return methods;
       })
     )
