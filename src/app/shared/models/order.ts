@@ -33,7 +33,7 @@ export interface PaymentSummary {
 export interface OrderItem {
   productId: number
   productName: string
-  picture1Url: string
+  pictureUrl: string
   price: number
   quantity: number
 }

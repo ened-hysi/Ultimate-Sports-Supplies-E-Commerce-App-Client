@@ -3,27 +3,27 @@
 
     <div class="container" style="max-width: 720px;">
 
-        <h2 class="fw-semibold fs-4 mb-2">Thanks for your fake order!</h2>
+        <h2 class="fw-semibold fs-4 mb-2">This is a fake order!</h2>
         
         <p class="text-muted mb-4">Your order <span class="fw-medium">{{order.id}}</span>
-        will never be processed as this is a fake shop. we will not notify you once your order has not shipped.
+        will never be delivered as this is a fake demo shop. You will never receive a notification that your order has been shipped.
         </p>
 
         <div class="rounded border border-secondary-subtle bg-light p-4 mb-4">
             
-            <dl class="row mb-2">
+            <dl class="row mb-3">
                 <dt class="col-6 text-muted">Date</dt>
                 <dd class="col-6 fw-medium text-end">{{order.orderDate | date: 'medium'}}</dd>
             </dl>
 
-            <dl class="row mb-2">
+            <dl class="row mb-3">
                 <dt class="col-6 text-muted">Payment method</dt>
                 <dd class="col-6 text-end fw-medium">{{order.paymentSummary | paymentCard}}</dd>
             </dl>
 
-            <dl class="d-flex align-items-center justify-content-between gap-4">
-                <dt class="col-6 text-muted">Address</dt>
-                <dd class="col-6 text-end fw-medium">{{order.shippingAddress | address}}</dd>
+            <dl class="d-flex align-items-center justify-content-between gap-4 pe-4">
+                <dt class="col-3 text-muted mb-2">Address</dt>
+                <dd class="col-9 text-end fw-medium">{{order.shippingAddress | address}}</dd>
             </dl>
 
             <dl class="row mb-0">
