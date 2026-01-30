@@ -17,7 +17,8 @@ import { PaymentCardPipe } from '../../../shared/pipes/payment-card-pipe';
     DatePipe,
     CurrencyPipe,
     AddressPipe,
-    PaymentCardPipe
+    PaymentCardPipe,
+    
   ],
   templateUrl: './checkout-success.component.html',
   styleUrl: './checkout-success.component.scss'

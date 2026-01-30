@@ -13,7 +13,8 @@ export class SignalrService {
 
 
   createHubConnection(){
-    this.hubConnection = new HubConnectionBuilder()
+    
+      this.hubConnection = new HubConnectionBuilder()
        .withUrl(this.hubUrl, {
         withCredentials: true
        })
@@ -25,7 +26,9 @@ export class SignalrService {
 
        this.hubConnection.on('OrderCompleteNotification', (order: Order) => {
           this.orderSignal.set(order)
+          console.log("order signal : createHubConnection() : "+JSON.stringify(order, null, 2));
        })  
+    
   }
 
   stopHubConnection() {
