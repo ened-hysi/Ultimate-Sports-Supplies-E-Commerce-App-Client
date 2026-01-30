@@ -26,7 +26,6 @@ export class SignalrService {
 
        this.hubConnection.on('OrderCompleteNotification', (order: Order) => {
           this.orderSignal.set(order)
-          console.log("order signal : createHubConnection() : "+JSON.stringify(order, null, 2));
        })  
     
   }
