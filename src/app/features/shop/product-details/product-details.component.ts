@@ -57,7 +57,6 @@ export class ProductDetailsComponent implements OnInit, AfterViewChecked {
       next: product => {
         this.product = product
         this.updateQuantityInCart();
-        console.log('loadProduct() this.product : '+JSON.stringify(this.product, null, 2));
       },
       error: error => console.log(error)
     })
@@ -86,7 +85,6 @@ export class ProductDetailsComponent implements OnInit, AfterViewChecked {
   getButtonText() {
     return this.quantityInCart > 0 ? 'Update cart' : 'Add to cart';
   }
-
 }
 
 

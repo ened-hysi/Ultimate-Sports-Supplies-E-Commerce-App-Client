@@ -57,20 +57,12 @@ export class CheckoutComponent implements OnInit, OnDestroy{
 
   async ngOnInit() {
     try {
-      console.log('Test');
       this.addressElement = await this.stripeService.createAddressElement();
-      if (this.addressElement){
-      console.log('ngOnInit() this.addressElement: ' + this.addressElement);
-      } else {
-        console.log('Empty address element');
-      }
 
       this.addressElement.mount('#address-element');
-      console.log('ngOnInit() this.addressElement: ' + this.addressElement);
       this.addressElement.on('change', this.handleAddressChange)
 
       this.paymentElement = await this.stripeService.createPaymentElement();
-      console.log('ngOnInit() this.paymentElement: ' + this.paymentElement);
 
       this.paymentElement.mount('#payment-element');
       this.paymentElement.on('change', this.handlePaymentChange);
@@ -106,10 +98,8 @@ export class CheckoutComponent implements OnInit, OnDestroy{
     try {
        if (Object.values(this.completionStatus()).every(status => status === true)) {
         const result = await this.stripeService.createConfirmationToken();
-        console.log('getConfirmationToken() result: ' + result);
         if (result.error) throw new Error(result.error.message);
         this.confirmationToken = result.confirmationToken;
-        console.log('getConfirmationToken() this.confirmationToken: ' + this.confirmationToken);
        }
     } catch (error: any) {
       this.snackbar.error(error.message);
@@ -121,7 +111,6 @@ export class CheckoutComponent implements OnInit, OnDestroy{
     if(event.selectedIndex === 1) {
       if(this.saveAddress) {
         const address = await this.getAddressFromStripeAddress() as Address;
-        console.log('getConfirmationToken() address: ' + address);
         address && firstValueFrom(this.accountService.updateAddress(address));
       }
     }
@@ -138,13 +127,11 @@ export class CheckoutComponent implements OnInit, OnDestroy{
     try {
       if (this.confirmationToken) {
         const result = await this.stripeService.confirmPayment(this.confirmationToken);
-        console.log('confirmPayment() result: ' + result);
         
         if (result.paymentIntent?.status === 'succeeded'){
           const order = await this.createOrderModel();
-          console.log('confirmPayment() result: ' + result);
           const orderResult = await firstValueFrom(this.orderService.createOrder(order));
-          console.log('confirmPayment() orderResult: ' + orderResult);
+
           if (orderResult) {
             this.orderService.orderComplete = true;
             this.cartService.deleteCart();
@@ -169,13 +156,10 @@ export class CheckoutComponent implements OnInit, OnDestroy{
 
   private async createOrderModel(): Promise<OrderToCreate> {
     const cart = this.cartService.cart();
-    console.log('createOrderModel() cart: ' + JSON.stringify(cart, null, 2));
 
     const shippingAddress = await this.getAddressFromStripeAddress() as ShippingAddress;
-    console.log('createOrderModel() shippingAddress: ' + JSON.stringify(shippingAddress, null, 2));
 
     const card = this.confirmationToken?.payment_method_preview.card;
-    console.log('createOrderModel() this.confirmationToken?.payment_method_preview.card: ' + JSON.stringify(this.confirmationToken?.payment_method_preview.card, null, 2));
 
     if (!cart?.id || !cart.deliveryMethodId || !card || !shippingAddress){
       throw new Error('Problem creating order');
@@ -197,10 +181,8 @@ export class CheckoutComponent implements OnInit, OnDestroy{
 
   private async getAddressFromStripeAddress(): Promise<Address | ShippingAddress | null>{
     const result = await this.addressElement?.getValue();
-    console.log('getAddressFromStripeAddress() result: ' + result);
 
     const address = result?.value.address;
-    console.log('getAddressFromStripeAddress() address: ' + address);
 
     if (address) {
       return {
