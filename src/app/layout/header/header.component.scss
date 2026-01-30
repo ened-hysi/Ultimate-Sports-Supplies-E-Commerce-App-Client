@@ -1,23 +1,36 @@
-.custom-badge .mat-badge-content{
+.custom-badge {
+  .mat-badge-content {
     width: 24px;
     height: 24px;
     font-size: 14px;
     line-height: 24px;
-}
+    background-color: #8B0000 !important;
+  }
 
-.custom-badge .mat-icon {
+  .mat-icon {
     font-size: 32px;
     width: 32px;
     height: 32px;
     color: #d81b60 !important;
+  }
+
+  &.active {
+    .mat-icon {
+      color: #8B0000 !important;
+    }
+
+    .mat-badge-content {
+      background-color: #8B0000 !important;
+    }
+  }
 }
 
 
 a {
-    &.active {
-      color: #8B0000 !important;
-      text-decoration: none !important;
-    }
+  &.active {
+    color: #8B0000 !important;
+    text-decoration: none !important;
+  }
 }
 
 header {
@@ -42,8 +55,3 @@ form button[mat-icon-button] {
 form {
   align-items: stretch !important;
 }
-
-a .mat-badge-content {
-    background-color: #8B0000 !important;
-}
-
