@@ -5,12 +5,13 @@
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
+@use 'sass:map';
 
 html {
   @include mat.theme((
     color: (
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
+      primary: mat.$rose-palette,
+      secondary: mat.$red-palette,
     ),
     typography: Roboto,
     density: 0,
@@ -40,8 +41,14 @@ body {
     filled-container-shape: '6px',
     outlined-container-shape: '6px'
   ));
+
   @include mat.badge-overrides((
-    background-color: blue,
+    background-color: #8B0000,
+  ));
+
+  @include mat.fab-overrides((
+    container-color: #8B0000,
+    container-elevation-shadow: -4px -4px 5px 0px rgba(0, 0, 0, 0.5),
   ));
 }
 
@@ -71,14 +78,19 @@ button.match-input-height {
     supporting-text-color: white
   ));
 
+h4.text-primary {
+  color: #d81b60 !important;
+}
+
+/*
 .dark-red-button {
-  background-color: #8B0000 !important; /* Dark red */
+  background-color: #8B0000 !important; 
   color: black !important;
 }
 
 .dark-red-button:hover {
-  background-color: #a10000 !important; /* Slightly lighter red on hover */
+  background-color: #a10000 !important;
 }
-
+*/
 
 }
